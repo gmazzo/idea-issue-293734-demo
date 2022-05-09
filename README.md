@@ -16,7 +16,7 @@ Reproduction steps, from a Terminal located at this repo do:
    3) Open `custom-distro` with IDEA as a standalone project (not the root, but from child folder): ![sync-custom-distro](snapshots/sync-custom-distro.png)
    This project has a standard Gradle URI on its own `gradle-wrapper.properties` and it will leave a "regular" Gradle daemon running after a Sync
    4) While keeping `custom-distro` open, also open the main test project with IDEA
-   5) A Gradle Sync will start and later fail: ![sync-root-and-buildSrc](snapshots/sync-root-and-buildSrc.png)
+   5) A Gradle Sync will start and later fail: ![sync-root-and-buildSrc](snapshots/sync-root-and-buildSrc-fail.png)
 ```
 > Configure project :buildSrc
 build: buildSrc
@@ -88,3 +88,8 @@ BUILD SUCCESSFUL in 421ms
 ```
 
 As you can see in the logs, there is a third "special" build that runs `:prepareKotlinBuildScriptModel` under `buildSrc`, and the `setup.init.gradle.kts` is not there
+
+4) Now finally, to "fix it" do:
+   1) While keeping IDEA open, run `./gradlew --stop` again
+   2) Run a Gradle Sync again, now the only daemon is the "custom" one and Sync succeeds: ![img.png](snapshots/sync-root-and-buildSrc-succeed.png)
+  
