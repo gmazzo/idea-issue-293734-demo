@@ -1,0 +1,1 @@
+println("Applied `sample-plugin`")

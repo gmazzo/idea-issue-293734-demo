@@ -6,6 +6,7 @@ val gradleVersion = GradleVersion.current().version
 val gradleDependency by configurations.creating
 
 repositories {
+    mavenCentral()
     ivy("https://services.gradle.org/distributions/") {
         name = "GradleDistributions"
         patternLayout { artifact("[organization]-[revision]-[module].[type]") }
